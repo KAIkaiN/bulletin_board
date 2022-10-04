@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ThreadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('user.welcome');
 });
+
+Route::resource('threads', ThreadController::class)
+->middleware('auth:users');
 
 Route::get('/dashboard', function () {
     return view('user.dashboard');
