@@ -56,7 +56,7 @@ class ThreadController extends Controller
             $thread->save();
 
             $message = new Message();
-            // $message->thread_id = $thread->id;
+            $message->thread_id = $thread->id;
             $message->body = $request->content;
             $message->save();
         } catch (\Exception $error){
