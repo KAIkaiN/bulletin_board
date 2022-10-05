@@ -2,29 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ThreadRequest;
-use App\Models\Message;
-use App\Models\Thread;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class ThreadController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-        $this->middleware('auth:users');
-
-    }
-
     public function index()
     {
-
+        //
     }
 
     /**
@@ -34,9 +23,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //modelからテーブルの情報を取得
-        $threads = Thread::all();
-        return view('threads.thread',compact('threads'));
+        //
     }
 
     /**
@@ -45,19 +32,9 @@ class ThreadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ThreadRequest $request)
+    public function store(Request $request)
     {
-        $thread = new Thread();
-        $thread->thread_title = $request->threadTitle;
-        $thread->latest_comment_time = Carbon::now();
-        $thread->save();
-
-        $message = new Message();
-        $message->thread_id = $thread->id;
-        $message->body = $request->content;
-        $message->save();
-
-        return redirect()->route('user.threads.create')->with('message','新規スレッドを作成しました。');
+        //
     }
 
     /**

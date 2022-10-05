@@ -17,7 +17,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('user.threads.index')" :active="request()->routeIs('user.threads.index')">
+                    <x-nav-link :href="route('user.threads.create')" :active="request()->routeIs('user.threads.create')">
                         {{ __('新規スレッド作成') }}
                     </x-nav-link>
                 </div>
