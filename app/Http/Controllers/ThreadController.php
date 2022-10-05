@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Thread;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ThreadController extends Controller
 {
@@ -47,15 +48,23 @@ class ThreadController extends Controller
      */
     public function store(ThreadRequest $request)
     {
-        $thread = new Thread();
-        $thread->thread_title = $request->threadTitle;
-        $thread->latest_comment_time = Carbon::now();
-        $thread->save();
+        \DB::beginTransaction();
+        try{
+            $thread = new Thread();
+            $thread->thread_title = $request->threadTitle;
+            $thread->latest_comment_time = Carbon::now();
+            $thread->save();
 
-        $message = new Message();
-        $message->thread_id = $thread->id;
-        $message->body = $request->content;
-        $message->save();
+            $message = new Message();
+            // $message->thread_id = $thread->id;
+            $message->body = $request->content;
+            $message->save();
+        } catch (\Exception $error){
+            \DB::rollBack();
+            \Log::error($error->getMessage());
+            return redirect()->route('user.threads.create')->with('message','作成に失敗しました。');
+        }
+        \DB::commit();
 
         return redirect()->route('user.threads.create')->with('message','新規スレッドを作成しました。');
     }
