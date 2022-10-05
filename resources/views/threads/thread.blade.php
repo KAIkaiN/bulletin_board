@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
 
-
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <x-flash-message status="info" />
@@ -53,7 +52,6 @@
                                 <textarea class="w-full rounded-xl border border-slate-400" name="body" id="" cols="30" rows="10"></textarea>
                                 <button type="submit" class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">書き込む</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
