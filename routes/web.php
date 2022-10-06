@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,9 @@ Route::get('/', function () {
 });
 
 Route::resource('threads', ThreadController::class)
+->middleware('auth:users');
+
+Route::resource('/{thread}/message', MessageController::class)
 ->middleware('auth:users');
 
 Route::get('/dashboard', function () {

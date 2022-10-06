@@ -10,8 +10,12 @@ class Message extends Model
     use HasFactory;
 
     protected $fillable = [
-        'content'
+        'thread_id','user_id','body'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 
     public function thread()
     {

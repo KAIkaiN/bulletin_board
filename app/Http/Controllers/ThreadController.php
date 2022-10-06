@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Thread;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ThreadController extends Controller
@@ -51,12 +52,14 @@ class ThreadController extends Controller
         \DB::beginTransaction();
         try{
             $thread = new Thread();
+            $thread->user_id = Auth::id();
             $thread->thread_title = $request->threadTitle;
             $thread->latest_comment_time = Carbon::now();
             $thread->save();
 
             $message = new Message();
             $message->thread_id = $thread->id;
+            $message->user_id = Auth::id();
             $message->body = $request->content;
             $message->save();
         } catch (\Exception $error){

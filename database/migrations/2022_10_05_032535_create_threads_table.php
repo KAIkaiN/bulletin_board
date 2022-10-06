@@ -15,11 +15,10 @@ class CreateThreadsTable extends Migration
     {
         Schema::create('threads', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('user_id')->constrained();
             $table->string('thread_title');
             $table->timestamp('latest_comment_time');
             $table->timestamps();
-
-            // $table->foreignId('user_id')->constrained();
         });
     }
 

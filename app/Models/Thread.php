@@ -11,9 +11,15 @@ class Thread extends Model
     use HasFactory;
 
     protected $fillable = [
-        'threadTitle'
+        'user_id','threadTitle','latest_comment_time',
     ];
 
+    //親テーブル紐付け
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    //子テーブルを紐付け
     public function message()
     {
         return $this->hasMany(Message::class);
