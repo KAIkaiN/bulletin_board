@@ -26,7 +26,9 @@ class ThreadController extends Controller
 
     public function index()
     {
-
+        //modelからテーブルの情報を取得
+        $threads = Thread::all();
+        return view('threads.thread-all',compact('threads'));
     }
 
     /**
@@ -36,9 +38,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //modelからテーブルの情報を取得
-        $threads = Thread::all();
-        return view('threads.thread',compact('threads'));
+        return view('threads.thread');
     }
 
     /**
@@ -80,7 +80,10 @@ class ThreadController extends Controller
      */
     public function show($id)
     {
-        //
+        $threads = Thread::find($id);
+        // $message = $threads->message;
+        return view('threads.response',compact('threads'));
+
     }
 
     /**

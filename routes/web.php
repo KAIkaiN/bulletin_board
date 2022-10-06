@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::resource('threads', ThreadController::class)
 ->middleware('auth:users');
 
-Route::resource('/{thread}/message', MessageController::class)
+Route::resource('/{id}/message', MessageController::class)
 ->middleware('auth:users');
 
 Route::get('/dashboard', function () {

@@ -56,7 +56,7 @@ class MessageController extends Controller
 
         $thread->message()->create($data);
 
-        return redirect()->route('user.threads.create')->with('message','新規スレッドを作成しました。');
+        return redirect()->route('user.threads.show',$thread->id);
     }
 
     /**
