@@ -27,7 +27,12 @@ class ThreadController extends Controller
     public function index()
     {
         //modelからテーブルの情報を取得
-        $threads = Thread::all();
+        //N + 1 問題を回避（loadの書き方）
+        $threads = Thread::orderBy('created_at','desc')->Paginate(5);
+        $threads->load('user','message.user');
+
+        //withの書き方
+        // $threads = Thread::with('user','message.user')->orderBy('created_at','desc')->Paginate(5);
         return view('threads.thread-all',compact('threads'));
     }
 
@@ -81,7 +86,6 @@ class ThreadController extends Controller
     public function show($id)
     {
         $threads = Thread::find($id);
-        // $message = $threads->message;
         return view('threads.response',compact('threads'));
 
     }

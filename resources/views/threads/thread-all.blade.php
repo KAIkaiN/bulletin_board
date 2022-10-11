@@ -23,6 +23,9 @@
                     @endforeach
                 </div>
             @endforeach
+            <div class="max-w-3xl mx-auto">
+                <p>{{ $threads->links() }}</p>
+            </div>
         </div>
     </div>
 </x-app-layout>
