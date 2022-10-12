@@ -15,7 +15,7 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('thread_id')->constrained();
+            $table->foreignId('thread_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained();
             $table->text('body');
             $table->timestamps();

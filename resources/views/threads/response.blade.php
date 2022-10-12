@@ -18,15 +18,25 @@
                     </div>
                 @endforeach
                 <div class="bg-zinc-100">
-                    <form method="post" action="{{ route('user.message.store',$threads->id) }}">
-                        @csrf
-                        <div class="w-11/12 m-auto py-3 ">
-                            <label class="block mb-1.5">内容</label>
-                            <textarea name="body"
-                            class="w-full rounded-xl border border-slate-400" id="" cols="30" rows="10"></textarea>
-                            <button type="submit" class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">書き込む</button>
-                        </div>
-                    </form>
+                    @if(Auth::guard('admin')->check())
+                        <form method="post" action="{{ route('admin.message.destroy',$threads->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <div class="w-11/12 m-auto py-3 ">
+                                <input type="submit" value="削除" class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"></button>
+                            </div>
+                        </form>
+                    @else
+                        <form method="post" action="{{ route('user.message.store',$threads->id) }}">
+                            @csrf
+                            <div class="w-11/12 m-auto py-3 ">
+                                <label class="block mb-1.5">内容</label>
+                                <textarea name="body"
+                                class="w-full rounded-xl border border-slate-400" id="" cols="30" rows="10"></textarea>
+                                <button type="submit" class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">書き込む</button>
+                            </div>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
