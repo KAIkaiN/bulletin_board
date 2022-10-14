@@ -4,7 +4,9 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-
+                {{-- <div class="shrink-0 flex items-center">
+                    {{ __('掲示板') }}
+                </div> --}}
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('user.threads.create')" :active="request()->routeIs('user.threads.create')">

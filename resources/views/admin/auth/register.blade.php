@@ -1,9 +1,10 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
+            {{-- <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            </a> --}}
+            <p class="text-3xl text-gray-400">管理者作成</p>
         </x-slot>
 
         <!-- Validation Errors -->
@@ -46,10 +47,10 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('admin.login') }}">
+                {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('admin.login') }}">
                     {{ __('Already registered?') }}
-                </a>
-
+                </a> --}}
+                <button class="ml-3" type="button" onClick="history.back()">戻る</button>
                 <x-button class="ml-4">
                     {{ __('Register') }}
                 </x-button>
